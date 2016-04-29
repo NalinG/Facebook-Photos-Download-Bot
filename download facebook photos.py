@@ -5,8 +5,7 @@ import time
 from selenium.webdriver import ActionChains
 import argparse
 import getpass
-
-
+from pyvirtualdisplay import Display
 
 def main(username, account_password,destination):
 	profile = webdriver.FirefoxProfile()
@@ -15,11 +14,12 @@ def main(username, account_password,destination):
 	profile.set_preference('browser.download.dir', destination)
 	profile.set_preference('browser.helperApps.neverAsk.saveToDisk', "image/png,image/jpeg")
 
-	if not username == "NONE" and not account_password == "NONE":
-
+	if not username == "NONE" and not account_password == "NONE" and not destination == "NONE":
+		display = Display(visible=0, size=(800, 600))
+        	display.start()
 		driver = webdriver.Firefox(firefox_profile=profile)
 		driver.get("https://www.facebook.com")
-		
+
 		email_id = driver.find_element_by_id("email")
 		password = driver.find_element_by_id("pass")
 		email_id.send_keys(username)
@@ -27,7 +27,7 @@ def main(username, account_password,destination):
 		driver.find_element_by_id("loginbutton").click()
 		# driver.find_element_by_css_selector("._5afe.sortableItem").click()
 		driver.find_element_by_id("navItem_2305272732").click()
-		time.sleep(5)
+		time.sleep(3)
 		list_of_images = driver.find_elements_by_css_selector(".uiMediaThumbImg")
 		list_of_images[0].click()
 		# print list_of_images
@@ -43,10 +43,12 @@ def main(username, account_password,destination):
 			# print option.get_attribute('innerHTML')
 			driver.find_element_by_css_selector(".snowliftPager.next.hilightPager").click()
 
+        	display.stop()
+
 	else:
 		print "\nIncomplete Parameters, Program is Shutting Down."
 
-			
+
 class Password(argparse.Action):
     def __call__(self, parser, namespace, values, option_string):
         if values is None:
@@ -60,7 +62,7 @@ if __name__ == '__main__':
 	parser.add_argument('-d', type = str,help = "Destination for your photos to download, please provide the full path",default = "NONE")
 	parser.add_argument('-p', action=Password, nargs='?', dest='password', help='Enter your password',default = "NONE")
 	args = parser.parse_args()
-	main(args.u,args.password,args.d)	
+	main(args.u,args.password,args.d)
 
 
 
