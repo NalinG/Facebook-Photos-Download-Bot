@@ -27,7 +27,7 @@ def main(username, account_password,destination):
 		driver.find_element_by_id("loginbutton").click()
 		# driver.find_element_by_css_selector("._5afe.sortableItem").click()
 		driver.find_element_by_id("navItem_2305272732").click()
-		time.sleep(5)
+		time.sleep(3)
 		list_of_images = driver.find_elements_by_css_selector(".uiMediaThumbImg")
 		list_of_images[0].click()
 		# print list_of_images
