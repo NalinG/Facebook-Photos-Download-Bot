@@ -5,7 +5,7 @@ Breaching the privacy of the users a crime punishable by law.
 
 Dependencies:
 Selenium webdriver(Firefox)
-Python
+Python.
 
 To use:
 
