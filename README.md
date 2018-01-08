@@ -4,7 +4,7 @@ Your password and username are not stored anywhere, and are not recorded.
 Breaching the privacy of the users a crime punishable by law.
 
 Dependencies:
-Selenium webdriver(Firefox)
+Selenium webdriver(Firefox)\n
 Python.
 
 To use:
